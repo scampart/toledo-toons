@@ -35,17 +35,29 @@
 
   .topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; border-bottom: 1px solid var(--line); }
   @media (max-width: 700px) { .topbar { padding: 16px 20px; } }
-  .mark { font-family: var(--font-display); font-weight: 400; font-size: 20px; letter-spacing: 0.03em; text-decoration: none; color: var(--ink); }
+  .mark-group { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .mark { font-family: var(--font-display); font-weight: 900; font-size: 20px; letter-spacing: 0.03em; text-decoration: none; color: var(--ink); }
   .mark span { color: var(--red); text-transform: uppercase; font-weight: 900; }
+  .mark-sub { display: inline-block; white-space: nowrap; transform-origin: left top; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: normal; text-transform: uppercase; color: var(--ink-soft); }
   .back-link { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 3px; }
   .back-link:hover { color: var(--red); border-color: var(--red); }
 
-  .hero { padding: 64px 0 40px; text-align: center; }
-  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; text-align: left; }
+  .hero { padding: 64px 0 0; text-align: center; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; text-align: left; padding-bottom: 40px; }
   .hero-copy { text-align: left; }
-  .hero-art { display: flex; justify-content: center; align-items: flex-end; height: 100%; }
-  .hero-art img { max-width: 360px; width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 34px rgba(0,0,0,0.5)); }
+  .hero-art { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 100%; }
+  .hero-art img { position: relative; z-index: 1; max-width: 360px; width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 34px rgba(0,0,0,0.5)); }
+  .art-blob { position: absolute; left: 50%; top: 50%; width: 118%; max-width: 620px; aspect-ratio: 1; transform: translate(-50%, -50%); overflow: visible; z-index: 0; pointer-events: none; }
+  .hero-art .hero-logo { position: absolute; left: -6%; top: -7%; width: clamp(96px, 11vw, 150px); max-width: none; height: auto; transform: rotate(-10deg); z-index: 0; pointer-events: none; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.45)); }
   @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; text-align: center; } .hero-copy { text-align: center; } .hero-art { order: -1; max-width: 260px; margin: 0 auto; } .hero-actions { justify-content: center; } }
+
+  .showcase .wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center; }
+  .showcase-art { position: relative; }
+  .showcase-art img { position: relative; z-index: 1; width: 100%; height: auto; display: block; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.45)); }
+  .showcase-copy p.lede { margin: 0 0 20px; }
+  .showcase-copy ul { list-style: none; margin: 0; padding: 0; font-size: 15px; color: var(--ink-soft); line-height: 1.9; }
+  .showcase-copy li::before { content: "\2014  "; color: var(--red); }
+  @media (max-width: 860px) { .showcase .wrap { grid-template-columns: 1fr; text-align: center; } .showcase-art { order: -1; max-width: 340px; margin: 0 auto; } .showcase-copy ul { text-align: left; max-width: 44ch; margin: 0 auto; } }
   .kicker { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 16px; margin-bottom: 22px; }
   .kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: #6FBF73; box-shadow: 0 0 0 3px rgba(111,191,115,0.18); }
   .hero h1 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(34px, 5.4vw, 58px); line-height: 0.96; margin: 0 0 20px; }
@@ -57,10 +69,8 @@
   .btn-solid:hover { background: var(--red-ink); border-color: var(--red-ink); transform: translateY(-2px); }
   .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
 
-  .gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin: 8px 0 0; }
-  .gallery img { width: 100%; height: 190px; object-fit: cover; display: block; background: var(--bg-raised); }
-  @media (max-width: 900px) { .gallery { grid-template-columns: repeat(3, 1fr); } .gallery img:nth-child(4), .gallery img:nth-child(5) { display: none; } }
-  @media (max-width: 560px) { .gallery { grid-template-columns: repeat(2, 1fr); } .gallery img:nth-child(3) { display: none; } .gallery img { height: 150px; } }
+  .gallery { margin: 8px 0 0; line-height: 0; background: var(--bg); }
+  .gallery img { width: 100%; height: auto; display: block; opacity: 0.6; }
 
   .section { padding: 70px 0; border-top: 1px solid var(--line); }
   .section-num { font-family: var(--font-mono); font-size: 12px; color: var(--red); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; }
@@ -102,9 +112,30 @@
   .policy h3 { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--red); margin: 0 0 10px; }
   .policy p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
 
+  .filter-chips { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 34px; }
+  .filter-chip { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 18px; border: 1px solid var(--line-strong); border-radius: 999px; background: transparent; color: var(--ink-soft); cursor: pointer; transition: border-color .15s ease, color .15s ease, background .15s ease; }
+  .filter-chip:hover { border-color: var(--ink); color: var(--ink); }
+  .filter-chip.active { background: var(--red); border-color: var(--red); color: #191016; font-weight: 600; }
+  .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 620px) { .work-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+  .work-item { position: relative; overflow: hidden; background: var(--bg-raised); aspect-ratio: 1; }
+  .work-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+  .work-item:hover img { transform: scale(1.06); }
+  .work-item .badge { position: absolute; left: 8px; bottom: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: #fff; background: rgba(21,19,25,0.72); padding: 5px 10px; border-radius: 999px; pointer-events: none; }
+  .work-item.hide { display: none; }
+  .work-item img { cursor: zoom-in; }
+
+  .lightbox { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; background: rgba(10,9,12,0.92); padding: 40px 20px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: min(92vw, 1100px); max-height: 88vh; width: auto; height: auto; display: block; box-shadow: 0 30px 70px rgba(0,0,0,0.6); border-radius: 4px; }
+  .lightbox-close { position: absolute; top: 22px; right: 26px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: var(--bg-raised); border: 1px solid var(--line-strong); border-radius: 50%; color: var(--ink); cursor: pointer; font-size: 22px; line-height: 1; }
+  .lightbox-close:hover { border-color: var(--red); color: var(--red); }
+  @media (max-width: 620px) { .lightbox-close { top: 14px; right: 14px; width: 38px; height: 38px; } }
+
   .faq { border-top: 1px solid var(--line); }
   .faq-item { border-bottom: 1px solid var(--line); padding: 22px 0; }
-  .faq-item h3 { font-family: var(--font-body); font-weight: 600; font-size: 16.5px; margin: 0 0 8px; color: var(--ink); }
+  .faq-item h3 { font-family: var(--font-body); font-weight: 600; font-size: 16.5px; margin: 0 0 8px; color: var(--red); }
   .faq-item p { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
 
   .cta { text-align: center; padding: 80px 0; border-top: 1px solid var(--line); }
@@ -113,36 +144,94 @@
   .cta p { color: var(--ink-soft); max-width: 50ch; margin: 0 auto 30px; }
 
   .copyright { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-soft); padding: 34px 20px 40px; border-top: 1px solid var(--line); }
+
+  .contact-ribbon { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 30; display: flex; flex-direction: row-reverse; align-items: stretch; }
+  .contact-ribbon .cr-tab { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--red); color: #191016; border: 0; padding: 20px 9px; cursor: pointer; white-space: nowrap; border-radius: 0 8px 8px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.45); }
+  .contact-ribbon .cr-panel { max-width: 0; overflow: hidden; white-space: nowrap; background: var(--paper); color: #1a1620; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 14px 0; transition: max-width .25s ease; border-radius: 8px 0 0 8px; }
+  .contact-ribbon.open .cr-panel { max-width: 320px; }
+  .contact-ribbon .cr-panel a { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; padding: 0 20px; color: #1a1620; text-decoration: none; }
+  .contact-ribbon .cr-panel a:hover { color: var(--red-ink); }
+  @media (hover: hover) { .contact-ribbon:hover .cr-panel { max-width: 320px; } }
+  @media (max-width: 780px) { .contact-ribbon .cr-tab { padding: 14px 7px; font-size: 10.5px; } .contact-ribbon.open .cr-panel { max-width: 250px; } }
+  .to-top { position: absolute; right: 0; top: 100%; margin-top: 10px; width: 34px; height: 34px; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; background: var(--bg-raised); color: var(--red); border: 1px solid var(--red); border-right: 0; border-radius: 8px 0 0 8px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease, visibility .2s, background .15s ease, color .15s ease; }
+  .to-top.show { opacity: 1; visibility: visible; transform: none; }
+  .to-top:hover, .to-top:focus-visible { background: var(--red); color: #191016; }
+  .to-top svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <a class="mark" href="#">Toledo <span>Toons</span></a>
-  <a class="back-link" href="https://scampart.com/#caricature">See My Full Portfolio &#8594;</a>
+  <div class="mark-group">
+    <a class="mark" id="markMain" href="#">Toledo <span>Toons</span></a>
+    <span class="mark-sub" id="markSub">A ScampArt Production</span>
+  </div>
+  <a class="back-link" href="https://scampart.com/">See My Professional Work &#8594;</a>
 </div>
+<script>
+(function(){
+  function matchWidth(){
+    var mark = document.getElementById('markMain');
+    var sub = document.getElementById('markSub');
+    if(!mark || !sub) return;
+    sub.style.transform = 'none';
+    var markWidth = mark.getBoundingClientRect().width;
+    var subWidth = sub.getBoundingClientRect().width;
+    if(subWidth > 0 && markWidth > 0){
+      sub.style.transform = 'scaleX(' + (markWidth / subWidth) + ')';
+    }
+  }
+  matchWidth();
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(matchWidth); }
+  window.addEventListener('load', matchWidth);
+  window.addEventListener('resize', matchWidth);
+})();
+</script>
 
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="kicker"><span class="dot"></span>Now Booking 2027 Events</span>
-      <h1>Live Caricatures For<br><em>Your Next Event.</em></h1>
+      <span class="kicker"><span class="dot"></span>Booking Now for 2026 &amp; 2027</span>
+      <h1>Get Drawn<br><em>Into The Fun.</em></h1>
       <p>Weddings, corporate parties, birthdays and fundraisers get live caricatures, drawn on the spot in black and white, full color or digital. Thirty years of experience turning your guests into the best souvenir of the night.</p>
       <div class="hero-actions">
-        <a class="btn btn-solid" href="https://scampart.com/#contact">Get a Quote</a>
+        <a class="btn btn-solid" href="contact.html">Get a Quote</a>
+        <a class="btn btn-outline" href="#gallery-work">See Samples</a>
         <a class="btn btn-outline" href="#pricing">See Pricing</a>
+        <a class="btn btn-outline" href="order.html">Order Online</a>
       </div>
     </div>
     <div class="hero-art">
+      <svg class="art-blob" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="splatFallHero" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+            <stop offset="0.42" stop-color="#fff" stop-opacity="0.9"/>
+            <stop offset="0.75" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="splatterHero" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="21" result="warp"/>
+            <feDisplacementMap in="SourceGraphic" in2="warp" scale="120" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="8" result="fine"/>
+            <feColorMatrix in="fine" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.4 0 0 0 0" result="fineA"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="4" result="blot"/>
+            <feColorMatrix in="blot" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.9 0 0 0 0" result="blotA"/>
+            <feComposite in="fineA" in2="blotA" operator="arithmetic" k1="0" k2="0.8" k3="0.5" k4="0" result="mix"/>
+            <feComposite in="shape" in2="mix" operator="arithmetic" k1="0" k2="2.6" k3="1.0" k4="-0.9" result="sum"/>
+            <feComponentTransfer in="sum" result="hard"><feFuncA type="linear" slope="14" intercept="-6.3"/></feComponentTransfer>
+            <feFlood flood-color="#E1503B" result="red"/>
+            <feComposite in="red" in2="hard" operator="in"/>
+          </filter>
+        </defs>
+        <circle cx="300" cy="300" r="235" fill="url(#splatFallHero)" filter="url(#splatterHero)"/>
+      </svg>
+      <img class="hero-logo" src="images/toledo-toons-logo.webp" alt="Toledo Toons logo">
       <img src="images/hero-artist-drawing.webp" alt="Illustrated artist sketching on a drawing board" width="1070" height="1470">
     </div>
   </div>
   <div class="gallery">
-    <img src="images/comm-wedding-couple.webp" alt="Live wedding caricature" loading="lazy">
-    <img src="images/comm-golfer.webp" alt="Live golfer caricature" loading="lazy">
-    <img src="images/comm-firefighter.webp" alt="Live firefighter caricature" loading="lazy">
-    <img src="images/comm-retirement-truck.webp" alt="Live retirement party caricature" loading="lazy">
-    <img src="images/comm-bobblehead-crate.webp" alt="Live caricature commission" loading="lazy">
+    <img src="images/gallery/banner-strip.webp" alt="Strip of live event and commission caricatures in charcoal tone" loading="lazy">
   </div>
 </section>
 
@@ -195,9 +284,157 @@
   </div>
 </section>
 
+<section class="section showcase">
+  <div class="wrap">
+    <div class="showcase-art">
+      <svg class="art-blob" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="splatFallShowcase" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+            <stop offset="0.42" stop-color="#fff" stop-opacity="0.9"/>
+            <stop offset="0.75" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="splatterShowcase" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="33" result="warp"/>
+            <feDisplacementMap in="SourceGraphic" in2="warp" scale="120" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="12" result="fine"/>
+            <feColorMatrix in="fine" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.4 0 0 0 0" result="fineA"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="6" result="blot"/>
+            <feColorMatrix in="blot" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.9 0 0 0 0" result="blotA"/>
+            <feComposite in="fineA" in2="blotA" operator="arithmetic" k1="0" k2="0.8" k3="0.5" k4="0" result="mix"/>
+            <feComposite in="shape" in2="mix" operator="arithmetic" k1="0" k2="2.6" k3="1.0" k4="-0.9" result="sum"/>
+            <feComponentTransfer in="sum" result="hard"><feFuncA type="linear" slope="14" intercept="-6.3"/></feComponentTransfer>
+            <feFlood flood-color="#E1503B" result="red"/>
+            <feComposite in="red" in2="hard" operator="in"/>
+          </filter>
+        </defs>
+        <circle cx="300" cy="300" r="235" fill="url(#splatFallShowcase)" filter="url(#splatterShowcase)"/>
+      </svg>
+      <img src="images/digital-setup.webp" alt="Digital caricature setup with tablet, external monitor and printer at an event" width="1448" height="1086">
+    </div>
+    <div class="showcase-copy">
+      <p class="section-num">02 / Digital Setup</p>
+      <h2>See It <em>In Action.</em></h2>
+      <p class="lede">This is the actual setup: drawn live on a tablet, mirrored to an external monitor so your guests watch every line happen, with instant prints ready right at the table.</p>
+      <ul>
+        <li>Compact enough for any table or corner of the room</li>
+        <li>Guests gather around the screen, not just the artist</li>
+        <li>Prints in hand in seconds, plus the online gallery for everyone else</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery-work">
+  <div class="wrap">
+    <p class="section-num">03 / Gallery</p>
+    <h2>See The <em>Work.</em></h2>
+    <p class="lede">A mix of live event drawings and digital commissions, black and white, full color and digital.</p>
+    <div class="filter-chips">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="live">Live Events</button>
+      <button class="filter-chip" data-filter="commission">Commissions</button>
+    </div>
+    <div class="work-grid">
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-comic-team-up.webp" alt="Color caricature of a family as a superhero team" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-boy-racing-cap.webp" alt="Live event caricature of a boy in a racing cap" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-bw-elderly-couple-scowl.webp" alt="Black and white caricature of a couple" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-young-man.webp" alt="Live event caricature of a young man" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-explorer-travel.webp" alt="Color caricature of an explorer with a telescope" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-man-mohawk.webp" alt="Live event caricature of a man with a mohawk" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-bw-elderly-couple-smiling.webp" alt="Black and white caricature of a smiling couple" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-mustache-man.webp" alt="Live event caricature of a man with a mustache" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-wedding-couple.webp" alt="Color caricature of a wedding couple" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-man-red-cap.webp" alt="Live event caricature of a man in a red cap" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-bw-young-woman.webp" alt="Black and white caricature of a young woman" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-bearded-man.webp" alt="Live event caricature of a bearded man" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-muscle-car-road-trip.webp" alt="Color caricature of friends on a road trip" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-teen-sports-cap.webp" alt="Live event caricature of a teen in a sports cap" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-bw-man-portrait.webp" alt="Black and white caricature portrait of a man" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-boy-braces.webp" alt="Live event caricature of a boy with braces" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-quality-control.webp" alt="Color caricature for a quality control team" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-brooklyn-man.webp" alt="Live event caricature of a man in a Brooklyn tank top" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-50th-birthday.webp" alt="Color caricature for a 50th birthday" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="live"><img src="images/gallery/live-caricature-couple.webp" alt="Live event caricature of a couple" loading="lazy"><span class="badge">Live</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-frequent-flyer.webp" alt="Color caricature of a woman with award medals" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-anniversary-couple.webp" alt="Color caricature of an anniversary couple" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-drummer-boy.webp" alt="Color caricature of a boy playing a drum" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-watering-can-woman.webp" alt="Color caricature of a woman watering plants" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-retro-villain.webp" alt="Retro style color caricature portrait" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-cheerleader.webp" alt="Color caricature of a cheerleader" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-avengers-family.webp" alt="Color caricature of a family as the Avengers superheroes" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-bobblehead-crate.webp" alt="Color caricature bobblehead figure in a crate" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-cartoon-basketball.webp" alt="Color caricature of a basketball player" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-construction-quality-control.webp" alt="Color caricature for a construction quality control team" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-dragon-boat-team.webp" alt="Color caricature of a dragon boat racing team" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-explorer-luggage.webp" alt="Color caricature of an explorer with luggage" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-firefighter.webp" alt="Color caricature of a firefighter" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-framed-portraits.webp" alt="Color caricature framed portrait strip" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-frequent-flyer-2.webp" alt="Color caricature of a frequent flyer with luggage tags" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-golfer.webp" alt="Color caricature of a golfer" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-lakeside-cats.webp" alt="Color caricature of a woman with cats by a lake" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-mustang-road-trip.webp" alt="Color caricature of friends on a road trip in a Mustang" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-line-art-couple.webp" alt="Black and white line art caricature of a couple" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-pizza-cook.webp" alt="Color caricature of a pizza cook" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-retirement-truck.webp" alt="Color caricature for a retirement with a truck" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-retro-cartoon-villain.webp" alt="Retro style color caricature of a cartoon villain" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-retro-gamer.webp" alt="Color caricature of a retro video gamer" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-shirt-rip-hero.webp" alt="Color caricature of a superhero ripping open his shirt" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-superhero-comic-cover.webp" alt="Color caricature styled as a superhero comic book cover" loading="lazy"><span class="badge">Commission</span></div>
+      <div class="work-item" data-category="commission"><img src="images/gallery/comm-wedding-couple-2.webp" alt="Color caricature of a wedding couple" loading="lazy"><span class="badge">Commission</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var chips = document.querySelectorAll('.filter-chip');
+  var items = document.querySelectorAll('.work-item');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var filter = chip.getAttribute('data-filter');
+      items.forEach(function(item){
+        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          item.classList.remove('hide');
+        } else {
+          item.classList.add('hide');
+        }
+      });
+    });
+  });
+})();
+</script>
+
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+<script>
+(function(){
+  var box = document.getElementById('lightbox');
+  var boxImg = document.getElementById('lightboxImg');
+  var closeBtn = document.getElementById('lightboxClose');
+  if (!box || !boxImg || !closeBtn) return;
+  document.querySelectorAll('.work-item img').forEach(function(img){
+    img.addEventListener('click', function(){
+      boxImg.src = img.src;
+      boxImg.alt = img.alt;
+      box.classList.add('open');
+    });
+  });
+  function close(){ box.classList.remove('open'); boxImg.src = ''; }
+  closeBtn.addEventListener('click', close);
+  box.addEventListener('click', function(e){ if (e.target === box) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+</script>
+
 <section class="section" id="addons">
   <div class="wrap">
-    <p class="section-num">02 / Add-Ons</p>
+    <p class="section-num">04 / Add-Ons</p>
     <h2>Make It <em>Extra.</em></h2>
     <p class="lede">Optional touches for weddings and corporate events. Add any of these to any booking.</p>
     <div class="rate-cards">
@@ -236,7 +473,7 @@
 
 <section class="section">
   <div class="wrap">
-    <p class="section-num">03 / Good To Know</p>
+    <p class="section-num">05 / Good To Know</p>
     <h2>Travel, Deposits <em>&amp; Booking.</em></h2>
     <div class="policy-grid">
       <div class="policy">
@@ -257,7 +494,7 @@
 
 <section class="section faq">
   <div class="wrap">
-    <p class="section-num">04 / FAQ</p>
+    <p class="section-num">06 / FAQ</p>
     <h2>Questions <em>People Ask.</em></h2>
     <div class="faq-item">
       <h3>How many people can you draw per hour?</h3>
@@ -294,11 +531,45 @@
   <div class="wrap">
     <h2>Let's Draw Your <em>Guests In.</em></h2>
     <p>Tell me your date, location and guest count, and I'll send a quote back within a day or two.</p>
-    <a class="btn btn-solid" href="https://scampart.com/#contact">Get a Quote &#8594;</a>
+    <a class="btn btn-solid" href="contact.html">Get a Quote &#8594;</a>
   </div>
 </section>
 
 <p class="copyright">&copy; Toledo Toons. Live caricatures by Shawn Camp / Scamp Art</p>
+
+<div class="contact-ribbon" id="contactRibbon">
+  <button type="button" class="cr-tab" id="crTab" aria-expanded="false" aria-controls="crPanel">Get A Quote</button>
+  <div class="cr-panel" id="crPanel">
+    <a href="mailto:scampart@gmail.com">scampart@gmail.com</a>
+    <a href="contact.html">Book Your Event &#8594;</a>
+    <a href="order.html">Order Online &#8594;</a>
+  </div>
+  <button type="button" class="to-top" id="toTop" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg></button>
+</div>
+
+<script>
+(function () {
+  var r = document.getElementById("contactRibbon"), t = document.getElementById("crTab");
+  if (!r || !t) return;
+  t.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var o = r.classList.toggle("open");
+    t.setAttribute("aria-expanded", String(o));
+  });
+  document.addEventListener("click", function (e) {
+    if (!r.contains(e.target)) { r.classList.remove("open"); t.setAttribute("aria-expanded", "false"); }
+  });
+})();
+(function () {
+  var btn = document.getElementById("toTop"); if (!btn) return;
+  function update() { btn.classList.toggle("show", (window.pageYOffset || document.documentElement.scrollTop) > 500); }
+  window.addEventListener("scroll", update, { passive: true }); update();
+  btn.addEventListener("click", function () {
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
+  });
+})();
+</script>
 
 </body>
 </html>
